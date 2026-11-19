@@ -44,6 +44,11 @@
 
 [hidden]{display:none!important}
 html:has(body.release-live){scroll-padding-top:0}
+@media(prefers-reduced-motion:no-preference){
+ html:has(body.release-live){scroll-snap-type:y mandatory}
+ .release-live .launch-opening,.release-live .teaser-section{scroll-snap-align:start;scroll-snap-stop:always}
+ .release-live footer{scroll-snap-align:end}
+}
 .release-live .experience{display:block;min-height:0;padding:0;background:#080706}
 .launch-opening{position:relative;isolation:isolate;display:grid;align-items:center;min-height:100svh;padding:60px 0 84px;background:#100a08}
 .launch-opening::before,.launch-opening::after{content:'';position:absolute;inset:0;z-index:-1}
@@ -206,6 +211,33 @@ function showRelease() {
   document.body.classList.add('release-live');
   loadPlatformLinks();
 }
+
+const snapMotion = matchMedia('(prefers-reduced-motion: no-preference)');
+let wheelBlockedUntil = 0;
+
+window.addEventListener('wheel', event => {
+  if (!document.body.classList.contains('release-live') || !snapMotion.matches ||
+      event.ctrlKey || event.shiftKey || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+
+  const now = performance.now();
+  if (now < wheelBlockedUntil) {
+    event.preventDefault();
+    wheelBlockedUntil = Math.max(wheelBlockedUntil, now + 120);
+    return;
+  }
+
+  const opening = document.getElementById('escuchar');
+  const teaser = document.getElementById('teaser');
+  const [current, destination] = event.deltaY > 0 ? [opening, teaser] : [teaser, opening];
+  const bounds = current.getBoundingClientRect();
+
+  // Keep ordinary scrolling when a section's content is taller than the screen.
+  if (Math.abs(bounds.top) > 2 || bounds.height > document.documentElement.clientHeight + 2) return;
+
+  event.preventDefault();
+  wheelBlockedUntil = now + 600;
+  destination.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}, { passive: false });
 
 document.addEventListener('visibilitychange', showRelease);
 window.addEventListener('pageshow', showRelease);
