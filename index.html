@@ -41,31 +41,49 @@
 @media(max-width:380px){.experience{padding-top:66px}.actions{margin:20px 0 26px}h1{font-size:22vw}}
 
 
+
 [hidden]{display:none!important}
-.release-live .hero{height:auto;min-height:0;max-height:none}
-.release-live .hero-image{background-position:center 38%}
-.release-live .hero:before{background:linear-gradient(180deg,#110d0b20 0%,#110d0b99 42%,#110d0b 100%)}
-.release-live .hero-content{padding-top:clamp(100px,15vw,220px);padding-bottom:52px}
-.release-live h1{font-size:clamp(88px,16vw,224px);margin-bottom:15px}
-.listen-panel .release{margin-bottom:22px;color:var(--paper)}
-.listen-panel h2{margin:0 0 14px;font-size:16px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
-.platforms{display:flex;flex-wrap:wrap;gap:10px}
-.platforms .button{min-height:48px;font-size:14px;text-transform:none;letter-spacing:0;padding:12px 19px;background:#110d0bd9}
-.platforms .button.primary{background:var(--paper)}
-.platforms .button:hover{background:white;color:#111}
-.release-live .teaser-section{min-height:0;padding:0 6% 58px;background:#110d0b}
-.teaser-title{width:min(100%,900px);margin:0 0 15px;color:var(--muted);font-size:14px;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
-.release-live .video-frame{width:min(100%,900px)}
+html:has(body.release-live){scroll-padding-top:0}
+.release-live .experience{display:block;min-height:0;padding:0;background:#080706}
+.launch-opening{position:relative;isolation:isolate;display:grid;align-items:center;min-height:100svh;padding:60px 0 84px;background:#100a08}
+.launch-opening::before,.launch-opening::after{content:'';position:absolute;inset:0;z-index:-1}
+.launch-opening::before{background:url('./bandera.webp') center 44%/cover no-repeat}
+.launch-opening::after{background:linear-gradient(90deg,#100a08ac,#100a0838 63%,#100a0870),linear-gradient(0deg,#100a08e8,transparent 65%)}
+.launch-layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,clamp(300px,31vw,400px));gap:clamp(28px,6vw,108px);align-items:center}
+.launch-title h1{font-size:clamp(84px,13.8vw,210px);margin:0 0 20px;line-height:.88}
+.launch-chapter{margin:0;font-size:clamp(.95rem,1.6vw,1.3rem);text-transform:uppercase;letter-spacing:.21em}
+.launch-card{width:100%;padding:14px;background:#120e0eef;border:1px solid #e8e3da35;box-shadow:0 20px 65px #0006}
+.launch-cover{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border:1px solid #e8e3da25}
+.launch-platforms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:12px}
+.launch-platform:last-child:nth-child(odd){grid-column:1/-1}
+.launch-platform{display:grid;place-items:center;min-height:47px;padding:8px 12px;background:#211b1b;border:1px solid #e8e3da36;color:var(--paper);font-size:.9rem;font-weight:700;text-align:center;transition:background .2s,border-color .2s}
+.launch-platform span{display:inline-flex;align-items:center;justify-content:center;gap:9px}
+.launch-platform svg{width:20px;height:20px;flex:0 0 auto}
+.launch-platform:hover{background:#302626;border-color:#e8e3da9c}
+.launch-next{position:absolute;bottom:20px;left:50%;translate:-50% 0;display:grid;place-items:center;min-width:52px;min-height:52px;border:1px solid #e8e3da50;border-radius:50%;background:#110a08a8;transition:border-color .2s,background .2s}
+.launch-next:hover{background:#302626;border-color:#e8e3da9c}
+.launch-next:focus-visible{outline-offset:4px}
+.launch-next svg{width:22px;height:22px}
+.release-live .teaser-section{min-height:100svh;padding:40px 6%;border-top:1px solid #e8e3da30;background:#080706}
+.teaser-title{width:min(100%,1080px);margin:0 0 16px;color:var(--muted);font-size:.875rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+.release-live .video-frame{width:min(100%,1080px)}
+.release-live .video-frame video{max-height:calc(100svh - 118px)}
+@media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ .launch-platform>span,.launch-next>svg{transform:translate(var(--magnet-x,0px),var(--magnet-y,0px));transition:transform .22s ease-out}
+}
 @media(max-width:760px){
- .release-live .experience{display:block;padding:0;min-height:0;background:#110d0b}
- .release-live .hero{display:flex}
- .release-live .hero:before,.release-live .hero-image{display:block}
- .release-live .hero-image{background-position:48% center;background-size:cover}
- .release-live .hero-content{display:block;padding-top:clamp(100px,27vw,160px);padding-bottom:36px;text-align:left}
- .release-live .hero-bottom,.release-live .hero-bottom>div{display:block}
- .release-live h1{font-size:clamp(66px,20vw,140px);margin-bottom:14px}
- .listen-panel .release{margin-bottom:18px}
- .release-live .teaser-section{padding-bottom:40px}
+ .release-live .experience{display:block}
+ .launch-opening{padding:38px 0 78px}
+ .launch-opening::before{background-position:41% center}
+ .launch-layout{grid-template-columns:1fr;gap:20px;justify-items:center;text-align:center}
+ .launch-title h1{font-size:clamp(54px,16.5vw,122px);margin:0 0 10px}
+ .launch-chapter{font-size:.875rem}
+ .launch-card{width:min(100%,390px,calc(49svh + 28px));padding:10px}
+ .launch-platforms{margin-top:9px}
+ .launch-platform{min-height:44px;font-size:.85rem}
+ .launch-next{min-width:44px;min-height:44px;bottom:14px}
+ .release-live .teaser-section{padding-inline:0}
+ .release-live .teaser-title{width:88%}
 }
 
 </style>
@@ -74,15 +92,29 @@
 <a href="#contenido" class="skip">Ir al contenido</a>
 
 <main id="contenido"><div class="experience">
+
+<section class="launch-opening" id="escuchar" aria-labelledby="launch-heading" hidden>
+  <div class="launch-layout wrap">
+    <div class="launch-title">
+      <h1 id="launch-heading">ARGENTINA <span class="year">2077</span></h1>
+      <p class="launch-chapter">Capítulo I</p>
+    </div>
+    <div class="launch-card">
+      <img class="launch-cover" src="./portada-capitulo-i.webp" width="880" height="880" alt="Portada del Capítulo I, con el Sol de Mayo sobre la bandera roja y negra">
+      <nav class="launch-platforms" aria-label="Plataformas de música">
+        <a class="launch-platform" href="https://open.spotify.com/album/42sNjjAKG0LVpT2lwMSNp6">
+          <span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5A10.5 10.5 0 1 0 12 22.5 10.5 10.5 0 0 0 12 1.5Zm4.82 15.15a.65.65 0 0 1-.9.22c-2.46-1.5-5.56-1.84-9.2-1.01a.65.65 0 1 1-.29-1.27c3.98-.9 7.4-.51 10.17 1.18.31.19.41.58.22.88Zm1.29-2.87a.81.81 0 0 1-1.12.27c-2.82-1.73-7.12-2.23-10.45-1.22a.81.81 0 1 1-.47-1.55c3.81-1.16 8.55-.6 11.77 1.37.38.23.5.74.27 1.13Zm.11-2.99C14.84 8.78 9.27 8.6 6.04 9.57a.98.98 0 1 1-.56-1.87c3.71-1.11 9.86-.9 13.74 1.4a.98.98 0 0 1-1 1.69Z"/></svg>Spotify</span>
+        </a>
+      </nav>
+    </div>
+  </div>
+  <a class="launch-next" href="#teaser" aria-label="Ir a la sección del teaser">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg>
+  </a>
+</section>
+
 <section class="teaser-section wrap" id="teaser" aria-label="Teaser de Argentina 2077"><h2 class="teaser-title" hidden>Teaser oficial</h2><div class="video-frame"><video controls playsinline preload="metadata" poster="./teaser-poster.jpg" aria-label="Video de Argentina 2077"><source src="./teaser.mp4" type="video/mp4">Tu navegador no puede reproducir este video. <a href="./teaser.mp4">Abrir el teaser</a>.</video></div><p id="video-error" class="video-error" hidden>No se pudo cargar el video. <a href="./teaser.mp4" target="_blank" rel="noopener">Abrir el teaser ↗</a></p></section>
 <section id="reserva" class="hero" aria-labelledby="titulo"><div class="hero-image" role="img" aria-label="Bandera roja y negra de Argentina 2077 con sol sin pupilas entre humo y brasas"></div><div class="hero-content wrap"><h1 id="titulo">ARGENTINA <span class="year">2077</span></h1><div class="hero-bottom"><div><div class="release" id="release-label"><strong>20 . 11 . 2026</strong></div><div class="actions" id="presave"><a class="button primary presave" href="https://open.spotify.com/album/42sNjjAKG0LVpT2lwMSNp6" target="_blank" rel="noopener noreferrer">Preguardar en Spotify <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
-<div class="listen-panel" id="escuchar" hidden>
-  <p class="release"><strong>Capítulo I</strong></p>
-  <h2 id="listen-heading">Escuchá el EP</h2>
-  <nav class="platforms" aria-labelledby="listen-heading">
-    <a class="button primary" href="https://open.spotify.com/album/42sNjjAKG0LVpT2lwMSNp6">Spotify</a>
-  </nav>
-</div>
 </div></div></div></section>
 </div></main>
 <footer><div class="wrap footer-inner"><a href="https://chebrolet.com.ar/" class="brand">CHEBROLET</a><nav aria-label="Redes"><a href="https://www.instagram.com/akachebrolet" target="_blank" rel="noopener noreferrer">Instagram</a><a href="https://www.youtube.com/@chebrolet" target="_blank" rel="noopener noreferrer">YouTube</a></nav></div></footer>
@@ -102,15 +134,35 @@ async function loadPlatformLinks() {
         typeof link.url === 'string' && /^https:\/\//i.test(link.url))
       .map(({ name, url }) => {
         const button = document.createElement('a');
-        button.className = 'button';
+        button.className = 'launch-platform';
         button.href = url;
-        button.textContent = name;
+        const label = document.createElement('span');
+        label.textContent = name;
+        button.append(label);
+        addMagneticHover(button);
         return button;
       });
-    document.querySelector('.platforms').append(...buttons);
+    document.querySelector('.launch-platforms').append(...buttons);
   } catch {
     // Spotify remains available if the additional platform list cannot be loaded.
   }
+}
+
+const magneticPointer = matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)');
+
+function addMagneticHover(element) {
+  element.addEventListener('pointermove', event => {
+    if (!magneticPointer.matches || event.pointerType !== 'mouse') return;
+    const bounds = element.getBoundingClientRect();
+    const horizontal = (event.clientX - bounds.left) / bounds.width - 0.5;
+    const vertical = (event.clientY - bounds.top) / bounds.height - 0.5;
+    element.style.setProperty('--magnet-x', `${horizontal * 16}px`);
+    element.style.setProperty('--magnet-y', `${vertical * 12}px`);
+  });
+  element.addEventListener('pointerleave', () => {
+    element.style.removeProperty('--magnet-x');
+    element.style.removeProperty('--magnet-y');
+  });
 }
 
 function showRelease() {
@@ -123,13 +175,10 @@ function showRelease() {
     return;
   }
 
-  const hero = document.querySelector('.hero');
-  const teaser = document.getElementById('teaser');
-  teaser.before(hero);
-  document.getElementById('release-label').hidden = true;
-  document.getElementById('presave').hidden = true;
+  document.getElementById('reserva').hidden = true;
   document.getElementById('escuchar').hidden = false;
-  teaser.querySelector('.teaser-title').hidden = false;
+  document.querySelector('.teaser-title').hidden = false;
+  document.querySelectorAll('.launch-platform, .launch-next').forEach(addMagneticHover);
   document.body.classList.add('release-live');
   loadPlatformLinks();
 }
