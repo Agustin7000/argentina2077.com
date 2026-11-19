@@ -71,7 +71,6 @@ html:has(body.release-live){scroll-padding-top:0}
 .launch-next:focus-visible{outline-offset:4px}
 .launch-next svg{width:22px;height:22px}
 .release-live .teaser-section{min-height:100svh;padding:40px 6%;border-top:1px solid #e8e3da30;background:#080706}
-.teaser-title{width:min(100%,1080px);margin:0 0 16px;color:var(--muted);font-size:.875rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase}
 .release-live .video-frame{width:min(100%,1080px)}
 .release-live .video-frame video{max-height:calc(100svh - 118px)}
 @media(hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
@@ -92,7 +91,6 @@ html:has(body.release-live){scroll-padding-top:0}
  .launch-platform{min-height:44px}
  .launch-next{min-width:44px;min-height:44px;bottom:14px}
  .release-live .teaser-section{padding-inline:0}
- .release-live .teaser-title{width:88%}
 }
 
 </style>
@@ -127,7 +125,7 @@ html:has(body.release-live){scroll-padding-top:0}
   </a>
 </section>
 
-<section class="teaser-section wrap" id="teaser" aria-label="Teaser de Argentina 2077"><h2 class="teaser-title" hidden>Teaser oficial</h2><div class="video-frame"><video controls playsinline preload="metadata" poster="./teaser-poster.jpg" aria-label="Video de Argentina 2077"><source src="./teaser.mp4" type="video/mp4">Tu navegador no puede reproducir este video. <a href="./teaser.mp4">Abrir el teaser</a>.</video></div><p id="video-error" class="video-error" hidden>No se pudo cargar el video. <a href="./teaser.mp4" target="_blank" rel="noopener">Abrir el teaser ↗</a></p></section>
+<section class="teaser-section wrap" id="teaser" aria-label="Teaser de Argentina 2077"><div class="video-frame"><video controls playsinline preload="metadata" poster="./teaser-poster.jpg" aria-label="Video de Argentina 2077"><source src="./teaser.mp4" type="video/mp4">Tu navegador no puede reproducir este video. <a href="./teaser.mp4">Abrir el teaser</a>.</video></div><p id="video-error" class="video-error" hidden>No se pudo cargar el video. <a href="./teaser.mp4" target="_blank" rel="noopener">Abrir el teaser ↗</a></p></section>
 <section id="reserva" class="hero" aria-labelledby="titulo"><div class="hero-image" role="img" aria-label="Bandera roja y negra de Argentina 2077 con sol sin pupilas entre humo y brasas"></div><div class="hero-content wrap"><h1 id="titulo">ARGENTINA <span class="year">2077</span></h1><div class="hero-bottom"><div><div class="release" id="release-label"><strong>20 . 11 . 2026</strong></div><div class="actions" id="presave"><a class="button primary presave" href="https://open.spotify.com/album/42sNjjAKG0LVpT2lwMSNp6" target="_blank" rel="noopener noreferrer">Preguardar en Spotify <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 19 19 5M5 5h14v14"/></svg></a></div>
 </div></div></div></section>
 </div></main>
@@ -139,7 +137,7 @@ html:has(body.release-live){scroll-padding-top:0}
 <template data-platform-icon="youtube music"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.8"/><path d="m10 7.8 6.5 4.2-6.5 4.2z" fill="currentColor"/></svg></template>
 <template data-platform-icon="tidal"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m4 4 4 4-4 4-4-4zm8 0 4 4-4 4-4-4zm8 0 4 4-4 4-4-4zm-8 8 4 4-4 4-4-4z"/></svg></template>
 <script>
-const listenAt = Date.parse('2026-11-20T00:05:00-03:00');
+const listenAt = Date.parse('2026-11-20T00:00:00-03:00');
 let releaseTimer;
 
 const platformIcons = new Map(
@@ -204,7 +202,6 @@ function showRelease() {
 
   document.getElementById('reserva').hidden = true;
   document.getElementById('escuchar').hidden = false;
-  document.querySelector('.teaser-title').hidden = false;
   document.querySelectorAll('.launch-platform, .launch-next').forEach(addMagneticHover);
   document.body.classList.add('release-live');
   loadPlatformLinks();
