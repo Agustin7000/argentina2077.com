@@ -136,6 +136,35 @@ html:has(body.release-live){scroll-padding-top:0}
  .release-live .teaser-section{padding-inline:0}
 }
 
+/* Compact track card within the launch screen. */
+.launch-stack{display:grid;gap:14px;min-width:0;width:100%}
+.track-card{display:grid;grid-template-columns:100px minmax(0,1fr);align-items:center;gap:14px;padding:12px;background:#140e0df7;border:1px solid #7d463f;border-left:3px solid #ed5647;box-shadow:0 14px 38px #0004;scroll-margin-top:20px;text-align:left}
+.track-card:target{border-color:#ef5647;box-shadow:0 0 0 2px #ef56473d,0 14px 40px #0009}
+.track-cover{display:grid;grid-template-areas:"cover";align-items:center;justify-items:center;width:100%;aspect-ratio:1;background:radial-gradient(ellipse at 64% 80%,#ab3828,#251312 57%,#0c0a0a);border:1px solid #7d463f;overflow:hidden}
+.track-cover>*{grid-area:cover}
+.track-cover img{width:100%;height:100%;min-height:0;object-fit:cover;display:block}
+.track-cover-artwork{z-index:1}
+.track-title{margin:0 0 8px;font:900 clamp(1.15rem,2.5vw,1.72rem)/1 Arial,sans-serif;color:#f4f0e9}
+.track-links{display:flex;flex-wrap:wrap;gap:6px}
+.track-links .launch-platform{min-height:44px;padding:6px 9px;border-color:#806052;font-size:.875rem}
+.track-links .launch-platform svg{width:16px;height:16px}
+.track-links .launch-platform span{gap:6px}
+@media(max-width:760px){
+ .launch-stack{max-width:530px;gap:12px}
+ .launch-card{grid-template-columns:62px minmax(0,1fr);gap:10px}
+ .launch-card-info{display:contents}
+ .launch-card .launch-cover{grid-row:1}
+ .album-heading{align-self:center}
+ .launch-card-chapter{margin-bottom:0}
+ .launch-platforms{grid-column:1/-1;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+ .launch-platform{padding-inline:8px;font-size:.875rem}
+ .track-card{grid-template-columns:78px minmax(0,1fr);gap:10px;padding:9px}
+ .track-links .launch-platform{padding-inline:7px}
+}
+@media(prefers-reduced-motion:no-preference){
+ html:has(body.release-live){scroll-snap-type:y proximity}
+ html:has(.track-card:target){scroll-snap-type:none}
+}
 </style>
 </head>
 <body class="release-live">
@@ -149,19 +178,36 @@ html:has(body.release-live){scroll-padding-top:0}
       <h1 id="launch-heading">ARGENTINA <span class="year">2077</span></h1>
       <p class="launch-chapter">Capítulo I</p>
     </div>
-    <article class="launch-card" aria-labelledby="launch-card-title">
-      <img class="launch-cover" src="./portada-capitulo-i.webp" width="880" height="880" alt="Portada del Capítulo I, con el Sol de Mayo sobre la bandera roja y negra">
-      <div class="launch-card-info">
-        <time class="launch-card-date" datetime="2026-11-20">20.11.2026</time>
-        <h2 class="launch-card-title" id="launch-card-title">ARGENTINA 2077</h2>
-        <p class="launch-card-chapter">Capítulo I</p>
-        <nav class="launch-platforms" aria-label="Plataformas de música">
-        <a class="launch-platform" href="https://open.spotify.com/album/42sNjjAKG0LVpT2lwMSNp6">
-          <span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5A10.5 10.5 0 1 0 12 22.5 10.5 10.5 0 0 0 12 1.5Zm4.82 15.15a.65.65 0 0 1-.9.22c-2.46-1.5-5.56-1.84-9.2-1.01a.65.65 0 1 1-.29-1.27c3.98-.9 7.4-.51 10.17 1.18.31.19.41.58.22.88Zm1.29-2.87a.81.81 0 0 1-1.12.27c-2.82-1.73-7.12-2.23-10.45-1.22a.81.81 0 1 1-.47-1.55c3.81-1.16 8.55-.6 11.77 1.37.38.23.5.74.27 1.13Zm.11-2.99C14.84 8.78 9.27 8.6 6.04 9.57a.98.98 0 1 1-.56-1.87c3.71-1.11 9.86-.9 13.74 1.4a.98.98 0 0 1-1 1.69Z"/></svg>Spotify</span>
-        </a>
-        </nav>
-      </div>
-    </article>
+    <div class="launch-stack">
+      <article class="launch-card" aria-labelledby="launch-card-title">
+        <img class="launch-cover" src="./portada-capitulo-i.webp" width="880" height="880" alt="Portada del Capítulo I, con el Sol de Mayo sobre la bandera roja y negra">
+        <div class="launch-card-info">
+          <div class="album-heading">
+            <time class="launch-card-date" datetime="2026-11-20">20.11.2026</time>
+            <h2 class="launch-card-title" id="launch-card-title">ARGENTINA 2077</h2>
+            <p class="launch-card-chapter">Capítulo I</p>
+          </div>
+          <nav class="launch-platforms" aria-label="Plataformas de música">
+          <a class="launch-platform" href="https://open.spotify.com/album/42sNjjAKG0LVpT2lwMSNp6">
+            <span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5A10.5 10.5 0 1 0 12 22.5 10.5 10.5 0 0 0 12 1.5Zm4.82 15.15a.65.65 0 0 1-.9.22c-2.46-1.5-5.56-1.84-9.2-1.01a.65.65 0 1 1-.29-1.27c3.98-.9 7.4-.51 10.17 1.18.31.19.41.58.22.88Zm1.29-2.87a.81.81 0 0 1-1.12.27c-2.82-1.73-7.12-2.23-10.45-1.22a.81.81 0 1 1-.47-1.55c3.81-1.16 8.55-.6 11.77 1.37.38.23.5.74.27 1.13Zm.11-2.99C14.84 8.78 9.27 8.6 6.04 9.57a.98.98 0 1 1-.56-1.87c3.71-1.11 9.86-.9 13.74 1.4a.98.98 0 0 1-1 1.69Z"/></svg>Spotify</span>
+          </a>
+          </nav>
+        </div>
+      </article>
+      <article class="track-card" id="tesla-track" aria-labelledby="track-title" tabindex="-1">
+        <div class="track-cover">
+          <img id="tesla-cover" class="track-cover-artwork" src="./tesla-truck-cover.jpg" width="640" height="636" alt="Portada de Tesla Truck">
+        </div>
+        <div>
+          <h2 class="track-title" id="track-title">Tesla Truck</h2>
+          <nav class="track-links" aria-label="Plataformas de Tesla Truck">
+            <a class="launch-platform" href="https://open.spotify.com/search/Tesla%20Track%20chebrolet"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1.5A10.5 10.5 0 1 0 12 22.5 10.5 10.5 0 0 0 12 1.5Zm4.82 15.15a.65.65 0 0 1-.9.22c-2.46-1.5-5.56-1.84-9.2-1.01a.65.65 0 1 1-.29-1.27c3.98-.9 7.4-.51 10.17 1.18.31.19.41.58.22.88Zm1.29-2.87a.81.81 0 0 1-1.12.27c-2.82-1.73-7.12-2.23-10.45-1.22a.81.81 0 1 1-.47-1.55c3.81-1.16 8.55-.6 11.77 1.37.38.23.5.74.27 1.13Zm.11-2.99C14.84 8.78 9.27 8.6 6.04 9.57a.98.98 0 1 1-.56-1.87c3.71-1.11 9.86-.9 13.74 1.4a.98.98 0 0 1-1 1.69Z"/></svg>Spotify</span></a>
+            <a class="launch-platform" href="https://www.youtube.com/@chebrolet/search?query=Tesla"><span><svg viewbox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.6 12 3.6 12 3.6s-7.5 0-9.4.5A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.9.5 9.4.5 9.4.5s7.5 0 9.4-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"/></svg>YouTube</span></a>
+            <a class="launch-platform" href="https://music.apple.com/ar/search?term=Tesla%20Track%20chebrolet"><span><svg viewbox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.7 3.2c-1.5.1-3.1.5-4.5.9-1.2.3-2.5.6-3.8.8v11.3a3.7 3.7 0 0 0-2.2-.2c-2.1.4-3.6 1.9-3.3 3.4.3 1.5 2.1 2.2 4.1 1.8 1.9-.4 3.2-1.7 3.2-3.3V8.1l5.7-1.4v7.4a3.7 3.7 0 0 0-2.2-.2c-2.1.4-3.6 1.9-3.3 3.4.3 1.5 2.1 2.2 4.1 1.8 1.9-.4 3.2-1.7 3.2-3.3V3.1l-.8.1Z"/></svg>Apple Music</span></a>
+          </nav>
+        </div>
+      </article>
+    </div>
   </div>
   <a class="launch-next" href="#teaser" aria-label="Ir a la sección del teaser">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg>
